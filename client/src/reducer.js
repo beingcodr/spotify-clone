@@ -10,8 +10,8 @@ export const initialState = {
     recentlyPlayedTracks: {},
     // ! Remove the token after development
     token: null,
-    token:
-        'BQACLZPlrZavGypSS-DCdq576b9yw1e0pTP4xc8ra9u040nOPDdK_TPDlgJr4UCUMnlGAfok46cg8I_gyIwp5lLvu73uC8r7D2RkhKZhw5Kg9lIrxPhPnH1_07nq6WT9zaQlswGxk__qT7aoDNjc50sZLbWUZYg0Id_zxCKd0dHTGEH8',
+    // token:
+    //     'BQACLZPlrZavGypSS-DCdq576b9yw1e0pTP4xc8ra9u040nOPDdK_TPDlgJr4UCUMnlGAfok46cg8I_gyIwp5lLvu73uC8r7D2RkhKZhw5Kg9lIrxPhPnH1_07nq6WT9zaQlswGxk__qT7aoDNjc50sZLbWUZYg0Id_zxCKd0dHTGEH8',
 };
 
 const reducer = (state, action) => {

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import SpotifyWebApi from 'spotify-web-api-js';
 import { useDataLayerValue } from '../../../../DataLayer';
-import CollectionContainer from '../../../CollectionContainer/CollectionContainer';
+import CollectionContainer, {
+    CollectionItem,
+} from '../../../CollectionContainer/CollectionContainer';
 
 // Styled components
 import StyledHome from './StyledHome';
@@ -45,23 +47,23 @@ const Home = () => {
 
     return (
         <StyledHome>
-            {/* {newReleases.items ? (
-                <CollectionContainer
-                    title='New releases'
-                    collectionItems={newReleases}
-                    collectionItemImages={newReleases && transformImages(newReleases)}
-                />
+            {newReleases.items ? (
+                <CollectionContainer title='New releases'>
+                    {newReleases.items.map((item) => {
+                        return (
+                            <CollectionItem
+                                name={item.name}
+                                image={item.images[0].url}
+                                artist={item.artists.map((artist) => artist.name).join(', ')}
+                            />
+                        );
+                    })}
+                </CollectionContainer>
             ) : (
                 <p>loading...</p>
             )}
-            {recentlyPlayedTracks.items ? (
-                <CollectionContainer
-                    title='Recently played'
-                    collectionItems={recentlyPlayedTracks}
-                    collectionItemImages={
-                        recentlyPlayedTracks && transformComplexImages(recentlyPlayedTracks)
-                    }
-                />
+            {/* {recentlyPlayedTracks.items ? (
+                <CollectionContainer title='Recently played' />
             ) : (
                 <p>loading...</p>
             )} */}
