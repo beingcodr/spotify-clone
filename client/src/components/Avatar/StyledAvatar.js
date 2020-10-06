@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export default styled.div`
     display: flex;
     align-items: center;
-    padding: 0.2rem 0.5rem 0.2rem 0.2rem;
+    padding: 0.2rem 1rem 0.2rem 0.2rem;
     border-radius: 30px;
     background-color: rgb(${(props) => props.theme.darkBackground});
 

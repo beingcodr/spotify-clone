@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import GlobalStyles from './styledcomponents/GlobalStyles';
 import { lightTheme, darkTheme } from './styledcomponents/Themes';
 import { ThemeProvider } from 'styled-components';
@@ -13,7 +13,7 @@ const spotifyInstance = new SpotifyWebApi();
 
 const App = () => {
     const [themeState, setThemeState] = useState('dark');
-    const [{ user, token, playlistId }, dispatch] = useDataLayerValue();
+    const [{ token }, dispatch] = useDataLayerValue();
 
     const theme = {
         ...(themeState === 'light' ? lightTheme : darkTheme),
@@ -54,7 +54,10 @@ const App = () => {
         <ThemeProvider theme={theme}>
             <GlobalStyles />
             <Router>
-                <Route path='/'>{token ? <MainApp /> : <Login />}</Route>
+                <Switch>
+                    <Route path='/'>{token ? <MainApp /> : <Login />}</Route>
+                    <Route path='/:appState'>{token ? <MainApp /> : <Login />}</Route>
+                </Switch>
             </Router>
         </ThemeProvider>
     );
