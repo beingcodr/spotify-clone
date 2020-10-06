@@ -16,7 +16,7 @@ const Body = () => {
 
     return (
         <StyledBody>
-            <Header />
+            {mainAppState === 'search' ? <Header search /> : <Header />}
             {mainAppState === '' ? <Home /> : mainAppState === 'playlist' ? <Playlist /> : null}
         </StyledBody>
     );

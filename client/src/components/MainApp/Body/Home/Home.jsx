@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SpotifyWebApi from 'spotify-web-api-js';
 import { useDataLayerValue } from '../../../../DataLayer';
+import CollectionContainer from '../../../CollectionContainer/CollectionContainer';
 
 // Styled components
 import StyledHome from './StyledHome';
@@ -29,10 +30,41 @@ const Home = () => {
         // ! This dependency is required to be like this
     }, [newReleases.albums]);
 
+    console.log('The newReleases state: ', newReleases);
     console.log('The recentlyPlayedTracks state: ', recentlyPlayedTracks);
+
+    const transformImages = (data) => {
+        const imgUrls = data.items.map((item) => item.images[0].url);
+        return imgUrls;
+    };
+
+    const transformComplexImages = (data) => {
+        const imgUrls = data.items.map((item) => item.track.album.images[0].url);
+        return imgUrls;
+    };
 
     return (
         <StyledHome>
+            {/* {newReleases.items ? (
+                <CollectionContainer
+                    title='New releases'
+                    collectionItems={newReleases}
+                    collectionItemImages={newReleases && transformImages(newReleases)}
+                />
+            ) : (
+                <p>loading...</p>
+            )}
+            {recentlyPlayedTracks.items ? (
+                <CollectionContainer
+                    title='Recently played'
+                    collectionItems={recentlyPlayedTracks}
+                    collectionItemImages={
+                        recentlyPlayedTracks && transformComplexImages(recentlyPlayedTracks)
+                    }
+                />
+            ) : (
+                <p>loading...</p>
+            )} */}
             <div className='spotifyCollection'>
                 <h1 className='spotifyCollection__title'>New releases</h1>
                 <div className='spotifyCollection__wrapper'>
