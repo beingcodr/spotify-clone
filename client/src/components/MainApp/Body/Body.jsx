@@ -8,8 +8,9 @@ import StyledBody from './StyledBody';
 import Header from './Header/Header';
 import Playlist from './Playlist/Playlist';
 import Home from './Home/Home';
+import Search from '../Search/Search';
 
-const Body = () => {
+const Body = ({ match }) => {
     const [{ mainAppState }, dispatch] = useDataLayerValue();
 
     useEffect(() => {}, [mainAppState]);
@@ -17,7 +18,13 @@ const Body = () => {
     return (
         <StyledBody>
             {mainAppState === 'search' ? <Header search /> : <Header />}
-            {mainAppState === '' ? <Home /> : mainAppState === 'playlist' ? <Playlist /> : null}
+            {mainAppState === '' ? (
+                <Home />
+            ) : mainAppState === 'playlist' ? (
+                <Playlist />
+            ) : mainAppState === 'search' ? (
+                <Search />
+            ) : null}
         </StyledBody>
     );
 };

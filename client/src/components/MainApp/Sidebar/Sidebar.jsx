@@ -22,7 +22,7 @@ const Sidebar = () => {
                 alt='spotify logo'
             />
 
-            <SidebarItems options={['home', 'search', 'your library']}>
+            <SidebarItems>
                 <SidebarOptions link='/' name='home' Icon={HomeIcon} />
                 <SidebarOptions link='/search' name='search' Icon={SearchIcon} />
                 <SidebarOptions link='/library' name='your library' Icon={MusicLibraryIcon} />

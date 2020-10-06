@@ -8,10 +8,12 @@ export const initialState = {
     mainAppState: '',
     newReleases: {},
     recentlyPlayedTracks: {},
+    searchQuery: '',
+    searchResults: {},
     // ! Remove the token after development
     token: null,
     // token:
-    //     'BQACLZPlrZavGypSS-DCdq576b9yw1e0pTP4xc8ra9u040nOPDdK_TPDlgJr4UCUMnlGAfok46cg8I_gyIwp5lLvu73uC8r7D2RkhKZhw5Kg9lIrxPhPnH1_07nq6WT9zaQlswGxk__qT7aoDNjc50sZLbWUZYg0Id_zxCKd0dHTGEH8',
+    //     'BQAMFD3s-5AKnr0kG-3KlA0kFc_hz48Fh__sKU2LoiFB7h3zjRVJ3jOlseE1157DYNsdU19yKcV1OooZm5Ux7RbGujc2PYz0vBhu5NShREU9M9FYXl1rr9myL6eMxCSooIIDw6C4N08eG4b1MgwzotSUWMIwveE-GrDcpfGowOLNVM3c',
 };
 
 const reducer = (state, action) => {
@@ -41,6 +43,12 @@ const reducer = (state, action) => {
 
         case 'SET_RECENTLY_PLAYED_TRACKS':
             return { ...state, recentlyPlayedTracks: action.recentlyPlayedTracks };
+
+        case 'SET_SEARCH_QUERY':
+            return { ...state, searchQuery: action.searchQuery };
+
+        case 'SET_SEARCH_QUERY_RESULTS':
+            return { ...state, searchResults: { ...action.searchResults } };
 
         default:
             return state;

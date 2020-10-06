@@ -13,7 +13,7 @@ import ChevronLeft from '../../../../react icons/ChevronLeft';
 import ChevronRight from '../../../../react icons/ChevronRight';
 
 const Header = ({ search }) => {
-    const [{ user }, dispatch] = useDataLayerValue();
+    const [{ user, searchQuery }, dispatch] = useDataLayerValue();
 
     return (
         <StyledHeader>
@@ -26,6 +26,10 @@ const Header = ({ search }) => {
                     <div className='header__left__searchbar'>
                         <SearchIcon />
                         <input
+                            onChange={(e) =>
+                                dispatch({ type: 'SET_SEARCH_QUERY', searchQuery: e.target.value })
+                            }
+                            value={searchQuery}
                             type='text'
                             name=''
                             id=''

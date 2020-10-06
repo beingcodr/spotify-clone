@@ -43,7 +43,12 @@ export default styled.div`
             display: flex;
             align-items: center;
 
+            svg {
+                fill: rgb(${(props) => props.theme.icon});
+            }
+
             input {
+                color: rgb(${(props) => props.theme.darkBackground});
                 width: 100%;
             }
         }
