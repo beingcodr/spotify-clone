@@ -11,9 +11,11 @@ export default styled.div`
     }
 
     .wrapper {
+        position: relative;
         height: max-content;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-        grid-gap: 1rem;
+        display: flex;
+        justify-content: flex-start;
+        overflow-x: auto;
+        overflow-y: hidden;
     }
 `;

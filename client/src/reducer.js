@@ -2,6 +2,7 @@ export const initialState = {
     user: null,
     playLists: [],
     discover_weekly: null,
+    savedShows: {},
     playlistId: null,
     playing: false,
     item: null,
@@ -13,7 +14,7 @@ export const initialState = {
     // ! Remove the token after development
     token: null,
     // token:
-    //     'BQAMFD3s-5AKnr0kG-3KlA0kFc_hz48Fh__sKU2LoiFB7h3zjRVJ3jOlseE1157DYNsdU19yKcV1OooZm5Ux7RbGujc2PYz0vBhu5NShREU9M9FYXl1rr9myL6eMxCSooIIDw6C4N08eG4b1MgwzotSUWMIwveE-GrDcpfGowOLNVM3c',
+    //     'BQBgFwDkZWjxDTek4BdsKfLLTfVHEhWg1fgfdYA_bBj8726UizIuDOC6OnaOGmcaeprTEYOXyzSweAuQueq-pZMvOd6712h65asukAlNTow0BXUehtGAtbRvm9mcbJProf-vrvV500WnNlf0sgVEpJi_DZPRmqbiv4aqX_zHitEWoBCvf5AZidAr',
 };
 
 const reducer = (state, action) => {
@@ -43,6 +44,9 @@ const reducer = (state, action) => {
 
         case 'SET_RECENTLY_PLAYED_TRACKS':
             return { ...state, recentlyPlayedTracks: action.recentlyPlayedTracks };
+
+        case 'SET_SAVED_SHOWS':
+            return { ...state, savedShows: action.savedShows };
 
         case 'SET_SEARCH_QUERY':
             return { ...state, searchQuery: action.searchQuery };

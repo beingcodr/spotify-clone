@@ -5,11 +5,9 @@ import { lightTheme, darkTheme } from './styledcomponents/Themes';
 import { ThemeProvider } from 'styled-components';
 import SpotifyWebApi from 'spotify-web-api-js';
 import { useDataLayerValue } from './DataLayer';
-import { getTokenFromResponse } from './config/spotify';
+import { getTokenFromResponse, spotifyInstance } from './config/spotify';
 import Login from './components/Login/Login';
 import MainApp from './components/MainApp/MainApp';
-
-const spotifyInstance = new SpotifyWebApi();
 
 const App = () => {
     const [themeState, setThemeState] = useState('dark');
@@ -18,7 +16,7 @@ const App = () => {
     const theme = {
         ...(themeState === 'light' ? lightTheme : darkTheme),
         breakpoints: {
-            lg_tablet: 'max-width: 1100px',
+            lg_tablet: 'max-width: 1200px',
             tablet: 'max-width: 770px',
             mobile: 'max-width: 510px',
             sm_mobile: 'max-width: 350px',
@@ -45,8 +43,6 @@ const App = () => {
             spotifyInstance.getUserPlaylists().then((playlists) => {
                 dispatch({ type: 'SET_PLAYLISTS', playlists: playlists });
             });
-
-            spotifyInstance.getNewReleases({ limit: 5 }).then((response) => console.log(response));
         }
     }, []);
 
