@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import SpotifyWebApi from 'spotify-web-api-js';
+import { spotifyInstance } from '../../../../config/spotify';
 import { useDataLayerValue } from '../../../../DataLayer';
 
 // React components
@@ -8,8 +8,10 @@ import CollectionItem from '../../../CollectionContainer/CollectionItem/Collecti
 
 const Home = () => {
     // ! Do not touch the logic of this component
-    const [{ token, newReleases, recentlyPlayedTracks }, dispatch] = useDataLayerValue();
-    const spotifyInstance = new SpotifyWebApi();
+    const [
+        { token, newReleases, recentlyPlayedTracks, savedShows },
+        dispatch,
+    ] = useDataLayerValue();
 
     useEffect(() => {
         spotifyInstance.setAccessToken(token);
@@ -27,15 +29,23 @@ const Home = () => {
             });
         });
 
+        spotifyInstance.getMySavedShows({ limit: 6 }).then((res) => {
+            dispatch({
+                type: 'SET_SAVED_SHOWS',
+                savedShows: res,
+            });
+        });
+
         // ! This dependency is required to be like this
     }, [newReleases.albums]);
 
     console.log('The newReleases state: ', newReleases);
     console.log('The recentlyPlayedTracks state: ', recentlyPlayedTracks);
+    console.log('saved shows: ', savedShows);
 
     return (
         <>
-            {newReleases.items && (
+            {newReleases.items?.length > 0 && (
                 <CollectionContainer title='New releases'>
                     {newReleases.items.map((item) => {
                         return (
@@ -53,7 +63,7 @@ const Home = () => {
                 </CollectionContainer>
             )}
 
-            {recentlyPlayedTracks.items && (
+            {recentlyPlayedTracks.items?.length > 0 && (
                 <CollectionContainer title='Recently played'>
                     {recentlyPlayedTracks.items.map((item) => (
                         <CollectionItem
@@ -66,6 +76,23 @@ const Home = () => {
                             artist={item.track.album.artists
                                 .map((artist) => artist.name)
                                 .join(', ')}
+                        />
+                    ))}
+                </CollectionContainer>
+            )}
+
+            {savedShows.items?.length > 0 && (
+                <CollectionContainer title='Your top shows'>
+                    {savedShows.items.map((item) => (
+                        <CollectionItem
+                            name={
+                                item.show.name.length >= 20
+                                    ? `${item.show.name.substring(0, 20)} ....`
+                                    : `${item.show.name}`
+                            }
+                            image={item.show.images[0].url}
+                            artist={item.show.publisher}
+                            type={item.type}
                         />
                     ))}
                 </CollectionContainer>

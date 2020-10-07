@@ -25,7 +25,11 @@ const Sidebar = () => {
             <SidebarItems>
                 <SidebarOptions link='/' name='home' Icon={HomeIcon} />
                 <SidebarOptions link='/search' name='search' Icon={SearchIcon} />
-                <SidebarOptions link='/library' name='your library' Icon={MusicLibraryIcon} />
+                <SidebarOptions
+                    link='/library/playlists'
+                    name='your library'
+                    Icon={MusicLibraryIcon}
+                />
             </SidebarItems>
             <SidebarItems title='playlists'>
                 {playlists ? (

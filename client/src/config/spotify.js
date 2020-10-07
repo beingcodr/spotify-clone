@@ -1,3 +1,5 @@
+import SpotifyWebApi from 'spotify-web-api-js';
+
 export const authEndpoint = 'https://accounts.spotify.com/authorize';
 const spotify_client_id = 'ff7e1ec8d7d844099f07edb9265c5235';
 const redirect_uri = 'https://spotify-clone12.netlify.app';
@@ -5,9 +7,12 @@ const scopes = [
     'user-read-currently-playing',
     'user-read-recently-played',
     'user-read-playback-state',
+    'user-library-read',
     'user-top-read',
     'user-modify-playback-state',
 ];
+
+export const spotifyInstance = new SpotifyWebApi();
 
 export const getTokenFromResponse = () => {
     return window.location.hash

@@ -9,11 +9,18 @@ import Header from './Header/Header';
 import Playlist from './Playlist/Playlist';
 import Home from './Home/Home';
 import Search from '../Search/Search';
+import Library from '../Library/Library';
 
-const Body = ({ match }) => {
+const Body = () => {
     const [{ mainAppState }, dispatch] = useDataLayerValue();
+    // localStorage.setItem('mainAppState', mainAppState);
 
-    useEffect(() => {}, [mainAppState]);
+    useEffect(() => {
+        // const localAppState = localStorage.getItem('mainAppState');
+        // localAppState
+        //     ? dispatch({ type: 'SET_MAINAPPSTATE', state: localAppState })
+        //     : dispatch({ type: 'SET_MAINAPPSTATE', state: mainAppState });
+    }, [mainAppState]);
 
     return (
         <StyledBody>
@@ -24,6 +31,8 @@ const Body = ({ match }) => {
                 <Playlist />
             ) : mainAppState === 'search' ? (
                 <Search />
+            ) : mainAppState === 'library' ? (
+                <Library />
             ) : null}
         </StyledBody>
     );
