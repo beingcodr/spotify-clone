@@ -52,6 +52,26 @@ export default styled.div`
                 width: 100%;
             }
         }
+
+        &__librarybar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            a {
+                display: block;
+                margin-right: 1rem;
+                padding: 0.8rem 1rem;
+                text-transform: capitalize;
+                transition: 0.4s ease-in-out;
+
+                &.active {
+                    padding: 0.8rem 1rem;
+                    border-radius: 5px;
+                    background-color: rgb(${(props) => props.theme.darkBackground});
+                }
+            }
+        }
     }
 
     .header__right {

@@ -24,7 +24,13 @@ const Body = () => {
 
     return (
         <StyledBody>
-            {mainAppState === 'search' ? <Header search /> : <Header />}
+            {mainAppState === 'search' ? (
+                <Header search />
+            ) : mainAppState === 'library' ? (
+                <Header library />
+            ) : (
+                <Header />
+            )}
             {mainAppState === '' ? (
                 <Home />
             ) : mainAppState === 'playlist' ? (

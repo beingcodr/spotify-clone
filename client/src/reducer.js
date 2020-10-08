@@ -1,20 +1,23 @@
 export const initialState = {
     user: null,
     playLists: [],
+    mainAppState: '',
+    libraryState: 'playlists',
     discover_weekly: null,
     savedShows: {},
+    saved_albums: {},
+    followed_artists: {},
     playlistId: null,
     playing: false,
     item: null,
-    mainAppState: '',
     newReleases: {},
     recentlyPlayedTracks: {},
     searchQuery: '',
     searchResults: {},
     // ! Remove the token after development
     token: null,
-    // token:
-    //     'BQBgFwDkZWjxDTek4BdsKfLLTfVHEhWg1fgfdYA_bBj8726UizIuDOC6OnaOGmcaeprTEYOXyzSweAuQueq-pZMvOd6712h65asukAlNTow0BXUehtGAtbRvm9mcbJProf-vrvV500WnNlf0sgVEpJi_DZPRmqbiv4aqX_zHitEWoBCvf5AZidAr',
+    token:
+        'BQDXBhgnN85_M7_Ejg2YDFT1Yfg9DUe9-y9UJ6DVf3cxk5lWmPJ350ePf9ao9KUCt7Hq8JPh-DFx0fMAu4LTodoymSIW5dF9Im6aaK1lQjUbX_7--6jc35vjmXRvxBvfbzk2HqHAcVblNlcH_RHogy-uF_lmyRtDtCHNre4ObizPqkfJaZM-KIP0duWHTA',
 };
 
 const reducer = (state, action) => {
@@ -39,6 +42,9 @@ const reducer = (state, action) => {
         case 'SET_MAINAPPSTATE':
             return { ...state, mainAppState: action.state };
 
+        case 'SET_LIBRARYSTATE':
+            return { ...state, libraryState: action.state };
+
         case 'SET_NEW_RELEASES':
             return { ...state, newReleases: action.newReleases };
 
@@ -47,6 +53,12 @@ const reducer = (state, action) => {
 
         case 'SET_SAVED_SHOWS':
             return { ...state, savedShows: action.savedShows };
+
+        case 'SET_SAVED_ALBUMS':
+            return { ...state, saved_albums: action.saved_albums };
+
+        case 'SET_FOLLOWED_ARTISTS':
+            return { ...state, followed_artists: action.followed_artists };
 
         case 'SET_SEARCH_QUERY':
             return { ...state, searchQuery: action.searchQuery };

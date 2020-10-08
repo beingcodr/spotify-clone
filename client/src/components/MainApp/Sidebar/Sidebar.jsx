@@ -29,6 +29,7 @@ const Sidebar = () => {
                     link='/library/playlists'
                     name='your library'
                     Icon={MusicLibraryIcon}
+                    onClick={() => dispatch({ type: 'SET_LIBRARYSTATE', state: 'playlists' })}
                 />
             </SidebarItems>
             <SidebarItems title='playlists'>
@@ -40,6 +41,9 @@ const Sidebar = () => {
                                 link={`/playlist/${playlist.id}`}
                                 id={playlist.id}
                                 name={playlist.name}
+                                onClick={() =>
+                                    dispatch({ type: 'SET_PLAYLIST_ID', playlistId: playlist.id })
+                                }
                             />
                         );
                     })

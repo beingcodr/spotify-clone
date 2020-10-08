@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { useDataLayerValue } from '../../../../DataLayer';
 
 // Styled components
@@ -12,8 +13,12 @@ import Avatar from '../../../Avatar/Avatar';
 import ChevronLeft from '../../../../react icons/ChevronLeft';
 import ChevronRight from '../../../../react icons/ChevronRight';
 
-const Header = ({ search }) => {
+const Header = ({ search, library }) => {
     const [{ user, searchQuery }, dispatch] = useDataLayerValue();
+
+    const dispatchLibraryState = (state) => {
+        dispatch({ type: 'SET_LIBRARYSTATE', state: state });
+    };
 
     return (
         <StyledHeader>
@@ -35,6 +40,22 @@ const Header = ({ search }) => {
                             id=''
                             placeholder='Search for artist, songs, etc'
                         />
+                    </div>
+                )}
+                {library && (
+                    <div className='header__left__librarybar'>
+                        <NavLink to='playlists' onClick={() => dispatchLibraryState('playlists')}>
+                            playlists
+                        </NavLink>
+                        <NavLink to='podcasts' onClick={() => dispatchLibraryState('podcasts')}>
+                            podcasts
+                        </NavLink>
+                        <NavLink to='artists' onClick={() => dispatchLibraryState('artists')}>
+                            artists
+                        </NavLink>
+                        <NavLink to='albums' onClick={() => dispatchLibraryState('albums')}>
+                            albums
+                        </NavLink>
                     </div>
                 )}
             </div>

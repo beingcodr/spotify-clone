@@ -14,6 +14,7 @@ export default styled.div`
         position: relative;
         height: max-content;
         display: flex;
+        flex-wrap: ${(props) => (props.flexwrap ? 'wrap' : 'nowrap')};
         justify-content: flex-start;
         overflow-x: auto;
         overflow-y: hidden;
