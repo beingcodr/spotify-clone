@@ -53,6 +53,7 @@ const Search = () => {
                                     }
                                     image={item?.images[0]?.url}
                                     type={item.type}
+                                    enableType
                                 />
                             ))}
                         </CollectionContainer>

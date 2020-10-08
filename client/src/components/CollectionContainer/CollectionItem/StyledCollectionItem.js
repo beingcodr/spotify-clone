@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export default styled.div`
-    min-width: 165px;
-    max-width: 200px;
-    max-height: 300px;
+    min-width: 200px;
+    max-width: ${(props) => (props.flexwrap ? '220px' : '200px')};
+    max-height: ${(props) => (props.flexwrap ? '320px' : '300px')};
     margin-right: 1rem;
+    margin-bottom: ${(props) => (props.flexwrap ? '1rem' : '0')};
     width: 100%;
     height: auto;
     border-radius: 5px;
@@ -20,12 +21,12 @@ export default styled.div`
 
         img {
             display: block;
-            width: 100%;
+            width: ${(props) => props.imgWidth};
+            margin: ${(props) => (props.imgWidth !== '100%' ? '0 auto 1rem auto' : '0 0 1rem 0')};
             height: auto;
             min-height: 172px;
             max-height: 172px;
             object-fit: contain;
-            margin-bottom: 1rem;
 
             &.dummy-image {
                 width: 100%;

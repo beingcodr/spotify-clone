@@ -8,8 +8,7 @@ import Sidebar from './Sidebar/Sidebar';
 import Body from './Body/Body';
 import Footer from './Footer/Footer';
 
-const MainApp = ({ match }) => {
-    console.log('match:', match);
+const MainApp = () => {
     return (
         <StyledMainApp>
             <div className='mainApp__body'>

@@ -5,7 +5,7 @@ import { useDataLayerValue } from '../../../../DataLayer';
 // Styled components
 import StyledSidebarItems from './StyledSidebarItems';
 
-export const SidebarOptions = ({ key, link, id, name, Icon }) => {
+export const SidebarOptions = ({ key, link, id, name, Icon, onClick }) => {
     const [{}, dispatch] = useDataLayerValue();
 
     return (
@@ -19,7 +19,7 @@ export const SidebarOptions = ({ key, link, id, name, Icon }) => {
                     dispatch({ type: 'SET_MAINAPPSTATE', state: state[1] });
                     if (!id) return;
 
-                    dispatch({ type: 'SET_PLAYLIST_ID', playlistId: id });
+                    onClick();
                 }}
             >
                 {Icon && <Icon className='sidebarItems__icon' />}

@@ -4,6 +4,10 @@ export default styled.div`
     padding: 1rem 0 1rem 1rem;
     overflow-y: scroll;
 
+    &::-webkit-scrollbar {
+        width: 0;
+    }
+
     h1 {
         text-transform: uppercase;
         font-size: 0.8rem;

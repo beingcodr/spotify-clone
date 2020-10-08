@@ -13,18 +13,18 @@ import Library from '../Library/Library';
 
 const Body = () => {
     const [{ mainAppState }, dispatch] = useDataLayerValue();
-    // localStorage.setItem('mainAppState', mainAppState);
 
-    useEffect(() => {
-        // const localAppState = localStorage.getItem('mainAppState');
-        // localAppState
-        //     ? dispatch({ type: 'SET_MAINAPPSTATE', state: localAppState })
-        //     : dispatch({ type: 'SET_MAINAPPSTATE', state: mainAppState });
-    }, [mainAppState]);
+    useEffect(() => {}, [mainAppState]);
 
     return (
         <StyledBody>
-            {mainAppState === 'search' ? <Header search /> : <Header />}
+            {mainAppState === 'search' ? (
+                <Header search />
+            ) : mainAppState === 'library' ? (
+                <Header library />
+            ) : (
+                <Header />
+            )}
             {mainAppState === '' ? (
                 <Home />
             ) : mainAppState === 'playlist' ? (

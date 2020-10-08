@@ -7,9 +7,23 @@ import StyledCollectionItem from './StyledCollectionItem';
 // dummy image
 import DummyImage from './dummy-image.png';
 
-const CollectionItem = ({ name, image, artist, type, link, onClick }) => {
+const CollectionItem = ({
+    name,
+    image,
+    artist,
+    type,
+    link,
+    onClick,
+    enableType,
+    flexwrap,
+    imgWidth,
+}) => {
     return (
-        <StyledCollectionItem onClick={onClick}>
+        <StyledCollectionItem
+            imgWidth={imgWidth ? imgWidth : '100%'}
+            flexwrap={flexwrap ? true : false}
+            onClick={onClick}
+        >
             <Link to={link}>
                 <img
                     className={!image && 'dummy-image'}
@@ -24,7 +38,7 @@ const CollectionItem = ({ name, image, artist, type, link, onClick }) => {
                         {artist}
                     </p>
                 )}
-                {type && <p className='trackOwner'>{type}</p>}
+                {enableType && <p className='trackOwner'>{type}</p>}
             </Link>
         </StyledCollectionItem>
     );

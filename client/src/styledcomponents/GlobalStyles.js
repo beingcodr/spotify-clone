@@ -24,7 +24,7 @@ export default createGlobalStyle`
     -moz-appearance: textfield;
     }
     
-    &::-webkit-scrollbar {
+    ::-webkit-scrollbar {
         width: 0;
     }
     
