@@ -15,9 +15,8 @@ export const initialState = {
     searchQuery: '',
     searchResults: {},
     // ! Remove the token after development
-    token: null,
     token:
-        'BQDXBhgnN85_M7_Ejg2YDFT1Yfg9DUe9-y9UJ6DVf3cxk5lWmPJ350ePf9ao9KUCt7Hq8JPh-DFx0fMAu4LTodoymSIW5dF9Im6aaK1lQjUbX_7--6jc35vjmXRvxBvfbzk2HqHAcVblNlcH_RHogy-uF_lmyRtDtCHNre4ObizPqkfJaZM-KIP0duWHTA',
+        '',
 };
 
 const reducer = (state, action) => {

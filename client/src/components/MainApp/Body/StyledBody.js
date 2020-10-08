@@ -7,5 +7,5 @@ export default styled.div`
     );
     flex: 0.9;
     padding: 1rem 2rem 10rem 2rem;
-    overflow: overlay;
+    overflow: auto;
 `;
