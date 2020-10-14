@@ -24,3 +24,5 @@ client
             |-- NestedReactComponent.jsx (React component)  
             |-- StyledNestedReactComponent.js (styled-component)  
 ```
+
+Learn more about the contribution guidelines [here](./.github/CONTRIBUTING.md)

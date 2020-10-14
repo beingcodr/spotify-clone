@@ -29,7 +29,7 @@ const App = () => {
         window.location.hash = '';
         // let _token = hash.access_token;
         let _token = token ? token : hash.access_token;
-        console.log(_token);
+        console.log('access_token', _token);
 
         if (_token) {
             dispatch({ type: 'SET_TOKEN', token: _token });
