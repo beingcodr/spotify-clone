@@ -14,7 +14,9 @@ const Search = () => {
     const [{ searchQuery, searchResults }, dispatch] = useDataLayerValue();
     useEffect(() => {
         spotifyInstance
-            .search(searchQuery, ['album', 'track', 'artist', 'playlist'], { limit: 6 })
+            .search(searchQuery, ['album', 'track', 'artist', 'playlist', 'show', 'episode'], {
+                limit: 6,
+            })
             .then((response) => {
                 dispatch({ type: 'SET_SEARCH_QUERY_RESULTS', searchResults: response });
                 console.log('search query results: ', response);
@@ -25,7 +27,7 @@ const Search = () => {
         <StyledSearch>
             {searchQuery && (
                 <>
-                    {searchResults.tracks?.items.length > 0 && (
+                    {searchResults.tracks?.items?.length > 0 && (
                         <CollectionContainer title='Songs'>
                             {searchResults.tracks.items.map((item) => (
                                 <CollectionItem
@@ -42,7 +44,8 @@ const Search = () => {
                             ))}
                         </CollectionContainer>
                     )}
-                    {searchResults.artists?.items.length > 0 && (
+
+                    {searchResults.artists?.items?.length > 0 && (
                         <CollectionContainer title='Artists'>
                             {searchResults.artists.items.map((item) => (
                                 <CollectionItem
@@ -58,7 +61,8 @@ const Search = () => {
                             ))}
                         </CollectionContainer>
                     )}
-                    {searchResults.albums?.items.length > 0 && (
+
+                    {searchResults.albums?.items?.length > 0 && (
                         <CollectionContainer title='Albums'>
                             {searchResults.albums.items.map((item) => (
                                 <CollectionItem
@@ -73,7 +77,8 @@ const Search = () => {
                             ))}
                         </CollectionContainer>
                     )}
-                    {searchResults.playlists?.items.length > 0 && (
+
+                    {searchResults.playlists?.items?.length > 0 && (
                         <CollectionContainer title='Playlists'>
                             {searchResults.playlists.items.map((item) => (
                                 <CollectionItem
@@ -89,10 +94,42 @@ const Search = () => {
                         </CollectionContainer>
                     )}
 
+                    {searchResults.shows?.items?.length > 0 && (
+                        <CollectionContainer title='Podcasts'>
+                            {searchResults.shows.items.map((item) => (
+                                <CollectionItem
+                                    name={
+                                        item.name.length >= 20
+                                            ? `${item.name.substring(0, 20)} ....`
+                                            : `${item.name}`
+                                    }
+                                    image={item?.images[0]?.url}
+                                />
+                            ))}
+                        </CollectionContainer>
+                    )}
+
+                    {searchResults.episodes?.items?.length > 0 && (
+                        <CollectionContainer title='Episodes'>
+                            {searchResults.episodes.items.map((item) => (
+                                <CollectionItem
+                                    name={
+                                        item.name.length >= 20
+                                            ? `${item.name.substring(0, 20)} ....`
+                                            : `${item.name}`
+                                    }
+                                    image={item?.images[0]?.url}
+                                />
+                            ))}
+                        </CollectionContainer>
+                    )}
+
                     {!searchResults.tracks?.items.length &&
                         !searchResults.artists?.items.length &&
                         !searchResults.albums?.items.length &&
-                        !searchResults.playlists?.items.length && (
+                        !searchResults.playlists?.items.length &&
+                        !searchResults.shows?.items.length &&
+                        !searchResults.episodes?.items.length && (
                             <p
                                 style={{
                                     textAlign: 'center',

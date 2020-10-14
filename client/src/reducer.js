@@ -16,7 +16,7 @@ export const initialState = {
     searchResults: {},
     // ! Remove the token after development
     token:
-        '',
+        'BQCk7nIxt-FDyCKqapQr_7taoTHPpsgqZfya-AIIN2dynmmmG_ruCcHYIqKCpFTX_ELQ0G73_8vjfysnZeyT2P7ENPPkDqUau68Ity75YoxB4PPdNI1typpffXeZp6HIbQ2qEMJt6Uz_ipXVtThfzv_sLU7BJqjdsmg0gIWIHy44gCfzSXdRaY1sUbOXzA',
 };
 
 const reducer = (state, action) => {
