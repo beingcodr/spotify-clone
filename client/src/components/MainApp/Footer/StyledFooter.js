@@ -2,14 +2,16 @@ import styled from 'styled-components';
 
 export default styled.div`
     position: fixed;
-    bottom: 0;
+    bottom: 75px;
     height: 80px;
     width: 100%;
     background: rgb(${(props) => props.theme.lightBackground});
     padding: 1rem;
     display: flex;
     justify-content: space-between;
-
+    @media ${props => props.theme.breakpoints.lg_tablet} {
+      bottom: 0;
+    }
     .footer__left {
         flex: 0.3;
         display: flex;

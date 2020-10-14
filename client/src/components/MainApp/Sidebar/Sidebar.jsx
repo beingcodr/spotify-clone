@@ -11,17 +11,21 @@ import MusicLibraryIcon from '../../../react icons/MusicLibraryIcon';
 
 // React components
 import SidebarItems, { SidebarOptions } from './SidebarItems/SidebarItems';
+import SidebarMobile from "./SidebarMobile/SidebarMobile";
 
 const Sidebar = () => {
     const [{ playlists }, dispatch] = useDataLayerValue();
 
     return (
+      <>
+        <div className='sidebar-mobile-wrapper'>
+          <SidebarMobile />
+        </div>
         <StyledSidebar>
             <img
                 src='https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg'
                 alt='spotify logo'
             />
-
             <SidebarItems>
                 <SidebarOptions link='/' name='home' Icon={HomeIcon} />
                 <SidebarOptions link='/search' name='search' Icon={SearchIcon} />
@@ -51,7 +55,8 @@ const Sidebar = () => {
                     <SidebarOptions name='No playlists' />
                 )}
             </SidebarItems>
-        </StyledSidebar>
+          </StyledSidebar>
+        </>
     );
 };
 

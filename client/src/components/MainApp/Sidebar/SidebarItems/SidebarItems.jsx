@@ -9,7 +9,7 @@ export const SidebarOptions = ({ key, link, id, name, Icon, onClick }) => {
     const [{}, dispatch] = useDataLayerValue();
 
     return (
-        <>
+        <li className='sidebar-item-list-item'>
             <Link
                 key={key && key}
                 to={link}
@@ -29,7 +29,7 @@ export const SidebarOptions = ({ key, link, id, name, Icon, onClick }) => {
                     <p className='sidebarItems__option'>{name}</p>
                 )}
             </Link>
-        </>
+        </li>
     );
 };
 
