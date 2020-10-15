@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 
 // Styled components
 import StyledMainApp from './StyledMainApp';
@@ -13,7 +14,11 @@ const MainApp = () => {
         <StyledMainApp>
             <div className='mainApp__body'>
                 <Sidebar />
-                <Body />
+                <>
+                    <Route exact path='/' component={Body} />
+                    <Route exact path='/:appState' component={Body} />
+                    <Route exact path='/:appState/:id' component={Body} />
+                </>
             </div>
             <Footer />
         </StyledMainApp>

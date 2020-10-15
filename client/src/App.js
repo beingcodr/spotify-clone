@@ -52,7 +52,6 @@ const App = () => {
             <Router>
                 <Switch>
                     <Route path='/'>{token ? <MainApp /> : <Login />}</Route>
-                    <Route path='/:appState'>{token ? <MainApp /> : <Login />}</Route>
                 </Switch>
             </Router>
         </ThemeProvider>

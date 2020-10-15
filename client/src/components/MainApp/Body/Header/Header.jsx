@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useDataLayerValue } from '../../../../DataLayer';
 
 // Styled components
@@ -15,6 +15,7 @@ import ChevronRight from '../../../../react icons/ChevronRight';
 
 const Header = ({ search, library }) => {
     const [{ user, searchQuery }, dispatch] = useDataLayerValue();
+    const history = useHistory();
 
     const dispatchLibraryState = (state) => {
         dispatch({ type: 'SET_LIBRARYSTATE', state: state });
@@ -24,8 +25,18 @@ const Header = ({ search, library }) => {
         <StyledHeader>
             <div className='header__left'>
                 <p className='header__left__historyBtns'>
-                    <ChevronLeft fill='white' width='40px' height='40px' />
-                    <ChevronRight fill='white' width='40px' height='40px' />
+                    <ChevronLeft
+                        onClick={() => history.goBack()}
+                        fill='white'
+                        width='40px'
+                        height='40px'
+                    />
+                    <ChevronRight
+                        onClick={() => history.goForward()}
+                        fill='white'
+                        width='40px'
+                        height='40px'
+                    />
                 </p>
                 {search && (
                     <div className='header__left__searchbar'>
