@@ -6,11 +6,12 @@ import { useDataLayerValue } from '../../../DataLayer';
 import CollectionContainer from '../../CollectionContainer/CollectionContainer';
 import CollectionItem from '../../CollectionContainer/CollectionItem/CollectionItem';
 
-const Library = () => {
+const Library = ({ match }) => {
     const [
-        { playlists, followed_artists, saved_albums, savedShows, token, libraryState },
+        { playlists, followed_artists, saved_albums, savedShows, token },
         dispatch,
     ] = useDataLayerValue();
+    const libraryState = match.params.libraryState;
     const spotifyInstance = new SpotifyWebApi();
 
     useEffect(() => {
@@ -57,7 +58,7 @@ const Library = () => {
                                 dispatch({ type: 'SET_MAINAPPSTATE', state: 'playlist' });
                                 dispatch({ type: 'SET_PLAYLIST_ID', playlistId: item.id });
                             }}
-                            link={`playlist/${item.id}`}
+                            link={`/playlist/${item.id}`}
                             name={item.name}
                             image={item?.images[0]?.url}
                             artist={item.owner.display_name}
@@ -76,7 +77,7 @@ const Library = () => {
                             //     dispatch({ type: 'SET_MAINAPPSTATE', state: 'show' });
                             //     dispatch({ type: 'SET_PLAYLIST_ID', playlistId: item.show.id });
                             // }}
-                            link={`show/${item.show.id}`}
+                            link={`/show/${item.show.id}`}
                             name={item.show.name}
                             image={item?.show?.images[0]?.url}
                             artist={item.show.publisher}
@@ -96,7 +97,7 @@ const Library = () => {
                             //     dispatch({ type: 'SET_MAINAPPSTATE', state: 'show' });
                             //     dispatch({ type: 'SET_PLAYLIST_ID', playlistId: item.show.id });
                             // }}
-                            link={`artist/${item.id}`}
+                            link={`/artist/${item.id}`}
                             name={item.name}
                             image={item?.images[0]?.url}
                             type={item.type}
@@ -115,7 +116,7 @@ const Library = () => {
                             //     dispatch({ type: 'SET_MAINAPPSTATE', state: 'show' });
                             //     dispatch({ type: 'SET_PLAYLIST_ID', playlistId: item.show.id });
                             // }}
-                            link={`album/${item.album.id}`}
+                            link={`/album/${item.album.id}`}
                             name={item.album.name}
                             image={item?.album?.images[0]?.url}
                             artist={item?.album?.artists.map((artist) => artist.name).join(', ')}

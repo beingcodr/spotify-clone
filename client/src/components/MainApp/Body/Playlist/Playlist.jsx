@@ -49,9 +49,10 @@ const Playlist = () => {
                     <FavoriteIcon fontSize='large' />
                     <MoreHorizIcon />
                 </div>
-                {discover_weekly?.tracks.items.map((item) => (
-                    <PlaylistSong track={item.track} />
-                ))}
+                {discover_weekly?.tracks?.items?.length > 0 &&
+                    discover_weekly?.tracks?.items.map((item) => (
+                        <PlaylistSong track={item.track} />
+                    ))}
             </div>
         </StyledPlaylist>
     );
