@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import GlobalStyles from './styledcomponents/GlobalStyles';
 import { lightTheme, darkTheme } from './styledcomponents/Themes';
 import { ThemeProvider } from 'styled-components';
-import SpotifyWebApi from 'spotify-web-api-js';
 import { useDataLayerValue } from './DataLayer';
 import { getTokenFromResponse, spotifyInstance } from './config/spotify';
 import Login from './components/Login/Login';
@@ -11,7 +10,7 @@ import MainApp from './components/MainApp/MainApp';
 
 const App = () => {
     const [themeState, setThemeState] = useState('dark');
-    const [{ token }, dispatch] = useDataLayerValue();
+    const [{ token, playlistId }, dispatch] = useDataLayerValue();
 
     const theme = {
         ...(themeState === 'light' ? lightTheme : darkTheme),
@@ -42,6 +41,8 @@ const App = () => {
 
             spotifyInstance.getUserPlaylists().then((playlists) => {
                 dispatch({ type: 'SET_PLAYLISTS', playlists: playlists });
+                playlistId === null &&
+                    dispatch({ type: 'SET_PLAYLIST_ID', playlistId: playlists?.items[0]?.id });
             });
         }
     }, []);

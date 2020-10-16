@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import SpotifyWebApi from 'spotify-web-api-js';
+import { spotifyInstance } from '../../../config/spotify';
 import { useDataLayerValue } from '../../../DataLayer';
 
 // React components
@@ -12,7 +12,6 @@ const Library = ({ match }) => {
         dispatch,
     ] = useDataLayerValue();
     const libraryState = match.params.libraryState;
-    const spotifyInstance = new SpotifyWebApi();
 
     useEffect(() => {
         spotifyInstance.setAccessToken(token);

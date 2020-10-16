@@ -33,8 +33,8 @@ const Sidebar = () => {
                 />
             </SidebarItems>
             <SidebarItems title='playlists'>
-                {playlists ? (
-                    playlists.items.map((playlist) => {
+                {playlists?.items?.length > 0 ? (
+                    playlists?.items.map((playlist) => {
                         return (
                             <SidebarOptions
                                 key={playlist.id}

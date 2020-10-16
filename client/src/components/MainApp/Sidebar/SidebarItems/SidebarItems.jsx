@@ -15,8 +15,6 @@ export const SidebarOptions = ({ key, link, id, name, Icon, onClick }) => {
                 to={link}
                 className='sidebarItems'
                 onClick={() => {
-                    let state = link.split('/');
-                    dispatch({ type: 'SET_MAINAPPSTATE', state: state[1] });
                     if (!id) return;
 
                     onClick();

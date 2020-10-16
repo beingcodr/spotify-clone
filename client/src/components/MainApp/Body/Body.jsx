@@ -12,7 +12,7 @@ import Search from '../Search/Search';
 import Library from '../Library/Library';
 
 const Body = ({ match }) => {
-    const mainAppState = match.params.appState;
+    let mainAppState = match.params.appState;
 
     return (
         <StyledBody>
@@ -25,11 +25,14 @@ const Body = ({ match }) => {
             )}
             {mainAppState === undefined ? (
                 <Home />
-            ) : mainAppState === 'playlist' ? (
+            ) : mainAppState === 'playlist' ||
+              mainAppState === 'album' ||
+              mainAppState === 'show' ||
+              mainAppState === 'artist' ? (
                 <Route
                     exact
                     path={`/${'playlist' || 'album' || 'show' || 'artist'}/:id`}
-                    component={Playlist}
+                    render={(props) => <Playlist {...props} mainAppState={mainAppState} />}
                 />
             ) : mainAppState === 'search' ? (
                 <Search />

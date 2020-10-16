@@ -1,6 +1,6 @@
 export const initialState = {
     user: null,
-    playLists: [],
+    playlists: [],
     discover_weekly: null,
     savedShows: {},
     saved_albums: {},
@@ -14,7 +14,7 @@ export const initialState = {
     searchResults: {},
     // ! Remove the token after development
     token:
-        'BQCgYZE9gxRaG50RVNnoQTkw4-RrG1VsDJ1gE2rzCioHItln5tPm0vm-B-RW4LYj4g63ZN-9C1rBleKYzelmbz4HTHkLzGrZLUNhGIPDUj5f3FhciCM8-X8z7q_wd91t0yCP858ZGHYl4LTnPqo75masMyhFkTFQbzo2_2C_0ZLaYIdFxF_sA4gdLzcSxQ',
+        'BQBc7JSLf115vRH-dw8f-rUwbeLAx6yVv3yNHHxIKQ8uGyv2GLljmOTpsuCccdOFUCsVw-AWBNVZDgC0BndmDwv0RPZ-bBfgySt3OSbGDVKMEG3FFlk15t63DfhTckRLTI2KyG4WwvFUIJ3UqsryaBzOVnPVWnwDh2OFEZN1GvggfDkQ1PHP-tLSB6KB7Q',
 };
 
 const reducer = (state, action) => {
