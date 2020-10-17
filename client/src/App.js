@@ -15,7 +15,7 @@ const App = () => {
     const theme = {
         ...(themeState === 'light' ? lightTheme : darkTheme),
         breakpoints: {
-            lg_tablet: 'max-width: 1200px',
+            lg_tablet: '(min-width: 1024px)',
             tablet: 'max-width: 770px',
             mobile: 'max-width: 510px',
             sm_mobile: 'max-width: 350px',

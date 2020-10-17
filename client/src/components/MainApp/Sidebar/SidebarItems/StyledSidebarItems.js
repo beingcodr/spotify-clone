@@ -1,9 +1,15 @@
 import styled from 'styled-components';
 
-export default styled.div`
-    padding: 1rem 0 1rem 1rem;
+export default styled.ul`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    list-style: none;
     overflow-y: scroll;
-
+    @media ${props => props.theme.breakpoints.lg_tablet} {
+      padding: 1rem 0 1rem 1rem;
+      flex-direction: column;
+    }
     &::-webkit-scrollbar {
         width: 0;
     }
@@ -19,7 +25,10 @@ export default styled.div`
     }
 
     &:first-of-type {
+      margin: 0;
+      @media ${props => props.theme.breakpoints.lg_tablet} {
         margin-top: 1rem;
+      }
     }
 
     .sidebarItems {
@@ -27,21 +36,32 @@ export default styled.div`
         width: 100%;
         display: flex;
         align-items: center;
+        flex-direction: column;
         cursor: pointer;
         transition: 0.4s ease-in-out;
         opacity: 0.6;
-
+        @media ${props => props.theme.breakpoints.lg_tablet} {
+          flex-direction: row;
+        }
         &.active {
             opacity: 1;
             font-weight: 800;
         }
 
         &__icon {
+          @media ${props => props.theme.breakpoints.lg_tablet} {
             margin-right: 1rem;
+          }
         }
 
         &__option {
-            text-transform: capitalize;
+          margin-top: 5px;
+          font-size: 0.9rem;
+          text-transform: capitalize;
+          @media ${props => props.theme.breakpoints.lg_tablet} {
+            margin-top: 0;
+            font-size: 1rem;
+          } 
         }
 
         &:hover {
