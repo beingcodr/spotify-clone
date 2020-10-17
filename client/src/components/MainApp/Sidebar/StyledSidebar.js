@@ -1,14 +1,21 @@
 import styled from 'styled-components';
 
-export default styled.div`
-    display: none;
+const StyledSidebar = styled.div`
+    display: block;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 75px;
+    z-index: 99;
+    background: rgb(${(props) => props.theme.darkBackground});
     @media ${props => props.theme.breakpoints.lg_tablet} {
       display: inline;
+      position: static;
+      z-index: 0;
       flex: 0.9;
       height: 100%;
       max-width: 230px;
       padding: 1rem 0.5rem;
-      background: rgb(${(props) => props.theme.darkBackground});
       overflow-y: scroll;
       padding-bottom: 80px;
     }
@@ -19,10 +26,6 @@ export default styled.div`
         height: 50px;
         object-fit: contain;
     }
-    .sidebar-mobile-wrapper {
-      display: block;
-      @media ${props => props.theme.breakpoints.lg_tablet} {
-        display: none;
-      }
-    }
 `;
+
+export default StyledSidebar;
