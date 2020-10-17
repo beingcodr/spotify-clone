@@ -5,6 +5,7 @@ import { useDataLayerValue } from '../../../DataLayer';
 import StyledSidebar from './StyledSidebar';
 
 // React icons
+import spotifyLogo from '../../../react icons/Spotifylogo.png';
 import HomeIcon from '../../../react icons/HomeIcon';
 import SearchIcon from '../../../react icons/SearchIcon';
 import MusicLibraryIcon from '../../../react icons/MusicLibraryIcon';
@@ -17,10 +18,7 @@ const Sidebar = () => {
 
     return (
         <StyledSidebar>
-            <img
-                src='https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg'
-                alt='spotify logo'
-            />
+            <img src={spotifyLogo} alt='spotify logo' />
 
             <SidebarItems>
                 <SidebarOptions link='/' name='home' Icon={HomeIcon} />

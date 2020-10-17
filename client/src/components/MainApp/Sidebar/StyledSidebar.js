@@ -10,8 +10,9 @@ export default styled.div`
     img {
         display: block;
         margin-right: auto;
-        width: 60%;
-        height: 50px;
+        padding-left: 1rem;
+        width: 80%;
+        height: auto;
         object-fit: contain;
     }
 `;

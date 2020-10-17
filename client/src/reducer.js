@@ -13,8 +13,7 @@ export const initialState = {
     searchQuery: '',
     searchResults: {},
     // ! Remove the token after development
-    token:
-        'BQBc7JSLf115vRH-dw8f-rUwbeLAx6yVv3yNHHxIKQ8uGyv2GLljmOTpsuCccdOFUCsVw-AWBNVZDgC0BndmDwv0RPZ-bBfgySt3OSbGDVKMEG3FFlk15t63DfhTckRLTI2KyG4WwvFUIJ3UqsryaBzOVnPVWnwDh2OFEZN1GvggfDkQ1PHP-tLSB6KB7Q',
+    token: '',
 };
 
 const reducer = (state, action) => {
