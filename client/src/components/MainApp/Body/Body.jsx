@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDataLayerValue } from '../../../DataLayer';
+import { Route } from 'react-router-dom';
 
 // Styled components
 import StyledBody from './StyledBody';
@@ -11,10 +11,8 @@ import Home from './Home/Home';
 import Search from '../Search/Search';
 import Library from '../Library/Library';
 
-const Body = () => {
-    const [{ mainAppState }, dispatch] = useDataLayerValue();
-
-    useEffect(() => {}, [mainAppState]);
+const Body = ({ match }) => {
+    let mainAppState = match.params.appState;
 
     return (
         <StyledBody>
@@ -25,14 +23,21 @@ const Body = () => {
             ) : (
                 <Header />
             )}
-            {mainAppState === '' ? (
+            {mainAppState === undefined ? (
                 <Home />
-            ) : mainAppState === 'playlist' ? (
-                <Playlist />
+            ) : mainAppState === 'playlist' ||
+              mainAppState === 'album' ||
+              mainAppState === 'show' ||
+              mainAppState === 'artist' ? (
+                <Route
+                    exact
+                    path={`/${'playlist' || 'album' || 'show' || 'artist'}/:id`}
+                    render={(props) => <Playlist {...props} mainAppState={mainAppState} />}
+                />
             ) : mainAppState === 'search' ? (
                 <Search />
             ) : mainAppState === 'library' ? (
-                <Library />
+                <Route exact path='/library/:libraryState' component={Library} />
             ) : null}
         </StyledBody>
     );

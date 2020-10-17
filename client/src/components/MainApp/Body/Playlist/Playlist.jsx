@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { spotifyInstance } from '../../../../config/spotify';
 import { useDataLayerValue } from '../../../../DataLayer';
 
 // Styled components
@@ -11,19 +12,19 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 // React componets
 import PlaylistSong from './PlaylistSong/PlaylistSong';
-import SpotifyWebApi from 'spotify-web-api-js';
 
-const Playlist = () => {
+const Playlist = ({ match, mainAppState }) => {
     const [{ discover_weekly, playlistId }, dispatch] = useDataLayerValue();
-    const spotifyInstance = new SpotifyWebApi();
+    const _playlistId = playlistId;
 
     useEffect(() => {
-        spotifyInstance
-            .getPlaylist(playlistId)
-            .then((response) =>
-                dispatch({ type: 'SET_DISCOVER_WEEKLY', discover_weekly: response })
-            );
-    }, [playlistId]);
+        spotifyInstance.getPlaylist(_playlistId).then((response) => {
+            dispatch({ type: 'SET_DISCOVER_WEEKLY', discover_weekly: response });
+            dispatch({ type: 'SET_PLAYLIST_ID', playlistId: match.params.id });
+        });
+    }, [_playlistId]);
+
+    console.log(mainAppState);
 
     return (
         <StyledPlaylist>
@@ -31,7 +32,7 @@ const Playlist = () => {
                 <img
                     src={
                         discover_weekly
-                            ? discover_weekly.images[0].url
+                            ? discover_weekly?.images[0]?.url
                             : 'https://cdn.shortpixel.ai/client/q_lossy,ret_img,w_250/https://www.hypebot.com/wp-content/uploads/2020/07/discover-weekly-250x250.png'
                     }
                     alt=''
@@ -39,7 +40,7 @@ const Playlist = () => {
                 <div className='playlist__info__text'>
                     <strong>PLAYLIST</strong>
                     <h4>{discover_weekly?.name}</h4>
-                    <p>{discover_weekly?.tracks.items.length} songs</p>
+                    <p>{discover_weekly?.tracks?.items.length} songs</p>
                 </div>
             </div>
 
@@ -49,9 +50,10 @@ const Playlist = () => {
                     <FavoriteIcon fontSize='large' />
                     <MoreHorizIcon />
                 </div>
-                {discover_weekly?.tracks.items.map((item) => (
-                    <PlaylistSong track={item.track} />
-                ))}
+                {discover_weekly?.tracks?.items?.length > 0 &&
+                    discover_weekly?.tracks?.items.map((item) => (
+                        <PlaylistSong track={item?.track} />
+                    ))}
             </div>
         </StyledPlaylist>
     );

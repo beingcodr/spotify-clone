@@ -1,8 +1,6 @@
 export const initialState = {
     user: null,
-    playLists: [],
-    mainAppState: '',
-    libraryState: 'playlists',
+    playlists: [],
     discover_weekly: null,
     savedShows: {},
     saved_albums: {},
@@ -15,8 +13,7 @@ export const initialState = {
     searchQuery: '',
     searchResults: {},
     // ! Remove the token after development
-    token:
-        '',
+    token: '',
 };
 
 const reducer = (state, action) => {
@@ -37,12 +34,6 @@ const reducer = (state, action) => {
 
         case 'SET_PLAYLIST_ID':
             return { ...state, playlistId: action.playlistId };
-
-        case 'SET_MAINAPPSTATE':
-            return { ...state, mainAppState: action.state };
-
-        case 'SET_LIBRARYSTATE':
-            return { ...state, libraryState: action.state };
 
         case 'SET_NEW_RELEASES':
             return { ...state, newReleases: action.newReleases };

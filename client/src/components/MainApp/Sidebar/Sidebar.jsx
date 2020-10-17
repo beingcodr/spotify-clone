@@ -5,13 +5,14 @@ import { useDataLayerValue } from '../../../DataLayer';
 import StyledSidebar from './StyledSidebar';
 
 // React icons
+import spotifyLogo from '../../../react icons/Spotifylogo.png';
 import HomeIcon from '../../../react icons/HomeIcon';
 import SearchIcon from '../../../react icons/SearchIcon';
 import MusicLibraryIcon from '../../../react icons/MusicLibraryIcon';
 
 // React components
 import SidebarItems, { SidebarOptions } from './SidebarItems/SidebarItems';
-import useWindowSize from "../../../utils/useWindowSize";
+import useWindowSize from '../../../utils/useWindowSize';
 
 const Sidebar = () => {
     const [{ playlists }, dispatch] = useDataLayerValue();
@@ -19,46 +20,44 @@ const Sidebar = () => {
     const mobileBreakpoint = windowSize && windowSize.width <= 1024;
 
     return (
-      <>
-        <StyledSidebar>
-            {!mobileBreakpoint && (
-              <img
-                src='https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg'
-                alt='spotify logo'
-              />
-            )}
-            <SidebarItems>
-                <SidebarOptions link='/' name='home' Icon={HomeIcon} />
-                <SidebarOptions link='/search' name='search' Icon={SearchIcon} />
-                <SidebarOptions
-                  link='/library/playlists'
-                  name='your library'
-                  Icon={MusicLibraryIcon}
-                  onClick={() => dispatch({ type: 'SET_LIBRARYSTATE', state: 'playlists' })}
-                />
-            </SidebarItems>
-            {!mobileBreakpoint && (
-              <SidebarItems title='playlists'>
-                  {playlists ? (
-                    playlists.items.map((playlist) => {
-                        return (
-                          <SidebarOptions
-                            key={playlist.id}
-                            link={`/playlist/${playlist.id}`}
-                            id={playlist.id}
-                            name={playlist.name}
-                            onClick={() =>
-                              dispatch({ type: 'SET_PLAYLIST_ID', playlistId: playlist.id })
-                            }
-                          />
-                        );
-                    })
-                  ) : (
-                    <SidebarOptions name='No playlists' />
-                  )}
-              </SidebarItems>
-            )}
-          </StyledSidebar>
+        <>
+            <StyledSidebar>
+                {!mobileBreakpoint && <img src={spotifyLogo} alt='spotify logo' />}
+                <SidebarItems>
+                    <SidebarOptions link='/' name='home' Icon={HomeIcon} />
+                    <SidebarOptions link='/search' name='search' Icon={SearchIcon} />
+                    <SidebarOptions
+                        link='/library/playlists'
+                        name='your library'
+                        Icon={MusicLibraryIcon}
+                        onClick={() => dispatch({ type: 'SET_LIBRARYSTATE', state: 'playlists' })}
+                    />
+                </SidebarItems>
+                {!mobileBreakpoint && (
+                    <SidebarItems title='playlists'>
+                        {playlists?.items?.length > 0 ? (
+                            playlists?.items.map((playlist) => {
+                                return (
+                                    <SidebarOptions
+                                        key={playlist.id}
+                                        link={`/playlist/${playlist.id}`}
+                                        id={playlist.id}
+                                        name={playlist.name}
+                                        onClick={() =>
+                                            dispatch({
+                                                type: 'SET_PLAYLIST_ID',
+                                                playlistId: playlist.id,
+                                            })
+                                        }
+                                    />
+                                );
+                            })
+                        ) : (
+                            <SidebarOptions name='No playlists' />
+                        )}
+                    </SidebarItems>
+                )}
+            </StyledSidebar>
         </>
     );
 };

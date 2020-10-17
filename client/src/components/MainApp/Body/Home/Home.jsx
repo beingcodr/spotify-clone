@@ -55,7 +55,7 @@ const Home = () => {
                                         ? `${item.name.substring(0, 20)} ....`
                                         : `${item.name}`
                                 }
-                                image={item.images[0].url}
+                                image={item?.images[0]?.url}
                                 artist={item.artists.map((artist) => artist.name).join(', ')}
                             />
                         );
@@ -72,7 +72,7 @@ const Home = () => {
                                     ? `${item.track.album.name.substring(0, 20)} ....`
                                     : `${item.track.album.name}`
                             }
-                            image={item.track.album.images[0].url}
+                            image={item?.track?.album?.images[0]?.url}
                             artist={item.track.album.artists
                                 .map((artist) => artist.name)
                                 .join(', ')}
@@ -90,7 +90,7 @@ const Home = () => {
                                     ? `${item.show.name.substring(0, 20)} ....`
                                     : `${item.show.name}`
                             }
-                            image={item.show.images[0].url}
+                            image={item?.show?.images[0]?.url}
                             artist={item.show.publisher}
                             type={item.type}
                         />
