@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useDataLayerValue } from '../../../../DataLayer';
+import useWindowSize from '../../../../utils/useWindowSize';
 
 // Styled components
 import StyledHeader from './StyledHeader';
@@ -16,6 +17,7 @@ import ChevronRight from '../../../../react icons/ChevronRight';
 const Header = ({ search, library }) => {
     const [{ user, searchQuery }, dispatch] = useDataLayerValue();
     const history = useHistory();
+    const windowSize = useWindowSize();
 
     const dispatchLibraryState = (state) => {
         dispatch({ type: 'SET_LIBRARYSTATE', state: state });
@@ -24,20 +26,22 @@ const Header = ({ search, library }) => {
     return (
         <StyledHeader>
             <div className='header__left'>
-                <p className='header__left__historyBtns'>
-                    <ChevronLeft
-                        onClick={() => history.goBack()}
-                        fill='white'
-                        width='40px'
-                        height='40px'
-                    />
-                    <ChevronRight
-                        onClick={() => history.goForward()}
-                        fill='white'
-                        width='40px'
-                        height='40px'
-                    />
-                </p>
+                {windowSize?.width >= 1024 && (
+                    <p className='header__left__historyBtns'>
+                        <ChevronLeft
+                            onClick={() => history.goBack()}
+                            fill='white'
+                            width='40px'
+                            height='40px'
+                        />
+                        <ChevronRight
+                            onClick={() => history.goForward()}
+                            fill='white'
+                            width='40px'
+                            height='40px'
+                        />
+                    </p>
+                )}
                 {search && (
                     <div className='header__left__searchbar'>
                         <SearchIcon />
@@ -71,7 +75,11 @@ const Header = ({ search, library }) => {
                 )}
             </div>
             <div className='header__right'>
-                <Avatar username={user?.display_name} imgUrl={user?.images[0]?.url} />
+                <Avatar
+                    username={user?.display_name}
+                    imgUrl={user?.images[0]?.url}
+                    displayUsername={windowSize?.width <= 1024 ? false : true}
+                />
             </div>
         </StyledHeader>
     );

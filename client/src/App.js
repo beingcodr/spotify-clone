@@ -52,7 +52,7 @@ const App = () => {
             <GlobalStyles />
             <Router>
                 <Switch>
-                    <Route path='/'>{token ? <MainApp /> : <Login />}</Route>
+                    <Route path='/' render={() => (token ? <MainApp /> : <Login />)} />
                 </Switch>
             </Router>
         </ThemeProvider>

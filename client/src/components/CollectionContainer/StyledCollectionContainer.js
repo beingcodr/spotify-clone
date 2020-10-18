@@ -1,13 +1,19 @@
 import styled from 'styled-components';
 
 export default styled.div`
-    margin-top: 2rem;
+    margin-top: 1rem;
+    @media ${(props) => props.theme.breakpoints.lg_tablet} {
+        margin-top: 2rem;
+    }
 
     .title {
-        font-size: 2rem;
+        font-size: 1.5rem;
         margin-bottom: 1rem;
         font-weight: 800;
         font-family: 'Montserrat', sans-serif;
+        @media ${(props) => props.theme.breakpoints.lg_tablet} {
+            font-size: 2rem;
+        }
     }
 
     .wrapper {

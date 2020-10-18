@@ -17,16 +17,18 @@ const CollectionItem = ({
     enableType,
     flexwrap,
     imgWidth,
+    mutable,
 }) => {
     return (
         <StyledCollectionItem
+            mutable={mutable ? true : false}
             imgWidth={imgWidth ? imgWidth : '100%'}
             flexwrap={flexwrap ? true : false}
             onClick={onClick}
         >
             <Link to={link}>
                 <img
-                    className={!image && 'dummy-image'}
+                    className={image ? '' : 'dummy-image'}
                     style={{ borderRadius: `${(type === 'artist' || type === 'user') && '50%'}` }}
                     src={image ? image : DummyImage}
                     alt={name}

@@ -1,25 +1,33 @@
 import styled from 'styled-components';
 
 export default styled.div`
-    padding: 1rem;
+    padding: 1rem 0;
     display: flex;
     align-items: center;
     color: white;
     border-radius: 5px;
+    @media ${(props) => props.theme.breakpoints.lg_tablet} {
+        padding: 1rem;
+    }
 
     &:hover {
         cursor: pointer;
-        background-color: rgb(${(props) => props.theme.darkBackground});
-        opacity: 0.8;
+        @media ${(props) => props.theme.breakpoints.lg_tablet} {
+            opacity: 0.8;
+            background-color: rgb(${(props) => props.theme.darkBackground});
+        }
     }
 
     img {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
         border-radius: 5px;
         object-fit: cover;
         object-position: center;
-        margin-right: 1rem;
+        @media ${(props) => props.theme.breakpoints.lg_tablet} {
+            width: 50px;
+            height: 50px;
+        }
     }
 
     .playlistSong__info {

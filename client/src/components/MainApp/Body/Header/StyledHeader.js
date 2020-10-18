@@ -2,12 +2,24 @@ import styled from 'styled-components';
 
 export default styled.div`
     display: flex;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    left: 0;
+    padding: 0.5rem 1rem;
+    background-color: rgb(${(props) => props.theme.mediumBackground});
     justify-content: space-between;
-    margin-bottom: 2rem;
+    z-index: 100;
+    @media ${(props) => props.theme.breakpoints.lg_tablet} {
+        padding: 1rem 2rem;
+    }
 
     .header__left {
         display: flex;
-        flex: 0.5;
+        flex: 0.9;
+        @media ${(props) => props.theme.breakpoints.lg_tablet} {
+            flex: 0.5;
+        }
 
         &__historyBtns {
             flex: 0.2;
@@ -34,7 +46,7 @@ export default styled.div`
         }
 
         &__searchbar {
-            flex: 0.8;
+            flex: 1;
             min-width: 70px;
             background-color: white;
             color: rgb(${(props) => props.theme.text});
@@ -42,6 +54,9 @@ export default styled.div`
             padding: 0 1rem;
             display: flex;
             align-items: center;
+            @media ${(props) => props.theme.breakpoints.lg_tablet} {
+                flex: 0.8;
+            }
 
             svg {
                 fill: rgb(${(props) => props.theme.icon});

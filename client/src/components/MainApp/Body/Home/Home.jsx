@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { spotifyInstance } from '../../../../config/spotify';
 import { useDataLayerValue } from '../../../../DataLayer';
 
+// Styled-components
+import StyledHome from './StyledHome';
+
 // React components
 import CollectionContainer from '../../../CollectionContainer/CollectionContainer';
 import CollectionItem from '../../../CollectionContainer/CollectionItem/CollectionItem';
@@ -39,12 +42,29 @@ const Home = () => {
         // ! This dependency is required to be like this
     }, [newReleases.albums]);
 
-    console.log('The newReleases state: ', newReleases);
-    console.log('The recentlyPlayedTracks state: ', recentlyPlayedTracks);
-    console.log('saved shows: ', savedShows);
-
     return (
-        <>
+        <StyledHome>
+            {/* Recently played */}
+            {recentlyPlayedTracks.items?.length > 0 && (
+                <CollectionContainer title='Recently played'>
+                    {recentlyPlayedTracks.items.map((item) => (
+                        <CollectionItem
+                            mutable
+                            name={
+                                item.track.album.name.length >= 20
+                                    ? `${item.track.album.name.substring(0, 20)} ....`
+                                    : `${item.track.album.name}`
+                            }
+                            image={item?.track?.album?.images[0]?.url}
+                            artist={item.track.album.artists
+                                .map((artist) => artist.name)
+                                .join(', ')}
+                        />
+                    ))}
+                </CollectionContainer>
+            )}
+
+            {/* New Releases */}
             {newReleases.items?.length > 0 && (
                 <CollectionContainer title='New releases'>
                     {newReleases.items.map((item) => {
@@ -63,24 +83,7 @@ const Home = () => {
                 </CollectionContainer>
             )}
 
-            {recentlyPlayedTracks.items?.length > 0 && (
-                <CollectionContainer title='Recently played'>
-                    {recentlyPlayedTracks.items.map((item) => (
-                        <CollectionItem
-                            name={
-                                item.track.album.name.length >= 20
-                                    ? `${item.track.album.name.substring(0, 20)} ....`
-                                    : `${item.track.album.name}`
-                            }
-                            image={item?.track?.album?.images[0]?.url}
-                            artist={item.track.album.artists
-                                .map((artist) => artist.name)
-                                .join(', ')}
-                        />
-                    ))}
-                </CollectionContainer>
-            )}
-
+            {/* Saved shows/podcasts */}
             {savedShows.items?.length > 0 && (
                 <CollectionContainer title='Your top shows'>
                     {savedShows.items.map((item) => (
@@ -97,7 +100,7 @@ const Home = () => {
                     ))}
                 </CollectionContainer>
             )}
-        </>
+        </StyledHome>
     );
 };
 

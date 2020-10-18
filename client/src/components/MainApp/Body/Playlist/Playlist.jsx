@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { spotifyInstance } from '../../../../config/spotify';
 import { useDataLayerValue } from '../../../../DataLayer';
+import useWindowSize from '../../../../utils/useWindowSize';
 
 // Styled components
 import StyledPlaylist from './StyledPlaylist';
@@ -16,6 +17,9 @@ import PlaylistSong from './PlaylistSong/PlaylistSong';
 const Playlist = ({ match, mainAppState }) => {
     const [{ discover_weekly, playlistId }, dispatch] = useDataLayerValue();
     const _playlistId = playlistId;
+    const windowSize = useWindowSize();
+    const windowSizeCalc = windowSize.width >= 1024;
+    const windowSizeCalcLt = windowSize.width <= 1024;
 
     useEffect(() => {
         spotifyInstance.getPlaylist(_playlistId).then((response) => {
@@ -24,7 +28,7 @@ const Playlist = ({ match, mainAppState }) => {
         });
     }, [_playlistId]);
 
-    console.log(mainAppState);
+    console.log(discover_weekly?.owner?.display_name);
 
     return (
         <StyledPlaylist>
@@ -38,9 +42,21 @@ const Playlist = ({ match, mainAppState }) => {
                     alt=''
                 />
                 <div className='playlist__info__text'>
-                    <strong>PLAYLIST</strong>
+                    {windowSizeCalc && <strong>PLAYLIST</strong>}
                     <h4>{discover_weekly?.name}</h4>
-                    <p>{discover_weekly?.tracks?.items.length} songs</p>
+                    {windowSizeCalc && <p>{discover_weekly?.tracks?.items.length} songs</p>}
+                    {windowSizeCalcLt && (
+                        <p
+                            style={{
+                                textTransform: 'uppercase',
+                                fontSize: '.8rem',
+                                fontWeight: '600',
+                                marginTop: '.5rem',
+                            }}
+                        >
+                            By {discover_weekly?.owner?.display_name}
+                        </p>
+                    )}
                 </div>
             </div>
 

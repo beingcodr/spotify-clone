@@ -2,15 +2,16 @@ import styled from 'styled-components';
 
 export default styled.div`
     position: fixed;
-    bottom: 75px;
+    bottom: 55px;
     height: 80px;
     width: 100%;
+    padding: 0;
     background: rgb(${(props) => props.theme.lightBackground});
-    padding: 1rem;
     display: flex;
     justify-content: space-between;
-    @media ${props => props.theme.breakpoints.lg_tablet} {
-      bottom: 0;
+    @media ${(props) => props.theme.breakpoints.lg_tablet} {
+        padding: 1rem;
+        bottom: 0;
     }
     .footer__left {
         flex: 0.3;
@@ -19,10 +20,14 @@ export default styled.div`
         align-items: center;
 
         &__albumlogo {
-            width: 50px;
-            height: 50px;
+            width: auto;
+            height: 100%;
             margin-right: 1rem;
-            border-radius: 5px;
+            @media ${(props) => props.theme.breakpoints.lg_tablet} {
+                width: 50px;
+                height: 50px;
+                border-radius: 5px;
+            }
         }
 
         .song_details {

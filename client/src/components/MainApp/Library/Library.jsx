@@ -47,7 +47,7 @@ const Library = ({ match }) => {
     }, [libraryState]);
 
     return (
-        <>
+        <div style={{ padding: '0 2rem 10rem 2rem' }}>
             {libraryState === 'playlists' && playlists?.items?.length > 0 && (
                 <CollectionContainer flexwrap title='Playlists'>
                     {playlists.items.map((item) => (
@@ -58,7 +58,11 @@ const Library = ({ match }) => {
                                 dispatch({ type: 'SET_PLAYLIST_ID', playlistId: item.id });
                             }}
                             link={`/playlist/${item.id}`}
-                            name={item.name}
+                            name={
+                                item?.name.length >= 15
+                                    ? `${item?.name.substring(0, 15)} ....`
+                                    : `${item?.name}`
+                            }
                             image={item?.images[0]?.url}
                             artist={item.owner.display_name}
                             type={item.type}
@@ -77,7 +81,11 @@ const Library = ({ match }) => {
                             //     dispatch({ type: 'SET_PLAYLIST_ID', playlistId: item.show.id });
                             // }}
                             link={`/show/${item.show.id}`}
-                            name={item.show.name}
+                            name={
+                                item?.show?.name.length >= 15
+                                    ? `${item?.show?.name.substring(0, 15)} ....`
+                                    : `${item?.show?.name}`
+                            }
                             image={item?.show?.images[0]?.url}
                             artist={item.show.publisher}
                             type={item.show.type}
@@ -97,7 +105,11 @@ const Library = ({ match }) => {
                             //     dispatch({ type: 'SET_PLAYLIST_ID', playlistId: item.show.id });
                             // }}
                             link={`/artist/${item.id}`}
-                            name={item.name}
+                            name={
+                                item?.name.length >= 15
+                                    ? `${item?.name.substring(0, 15)} ....`
+                                    : `${item?.name}`
+                            }
                             image={item?.images[0]?.url}
                             type={item.type}
                             enableType
@@ -116,7 +128,11 @@ const Library = ({ match }) => {
                             //     dispatch({ type: 'SET_PLAYLIST_ID', playlistId: item.show.id });
                             // }}
                             link={`/album/${item.album.id}`}
-                            name={item.album.name}
+                            name={
+                                item?.album?.name.length >= 15
+                                    ? `${item?.album?.name.substring(0, 15)} ....`
+                                    : `${item?.album?.name}`
+                            }
                             image={item?.album?.images[0]?.url}
                             artist={item?.album?.artists.map((artist) => artist.name).join(', ')}
                             type={item.album.type}
@@ -124,7 +140,7 @@ const Library = ({ match }) => {
                     ))}
                 </CollectionContainer>
             )}
-        </>
+        </div>
     );
 };
 
