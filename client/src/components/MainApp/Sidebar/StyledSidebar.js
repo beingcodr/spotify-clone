@@ -5,19 +5,19 @@ const StyledSidebar = styled.div`
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 75px;
+    padding: 0.5rem 0;
+    height: auto;
     z-index: 99;
     background: rgb(${(props) => props.theme.darkBackground});
     @media ${(props) => props.theme.breakpoints.lg_tablet} {
-        display: inline;
-        position: static;
+        position: relative;
         z-index: 0;
         flex: 0.9;
         height: 100%;
         max-width: 230px;
         padding: 1rem 0.5rem;
         overflow-y: scroll;
-        padding-bottom: 80px;   
+        padding-bottom: 80px;
     }
 
     img {

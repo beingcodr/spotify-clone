@@ -6,6 +6,7 @@ export const initialState = {
     saved_albums: {},
     followed_artists: {},
     playlistId: null,
+    detailedId: null,
     playing: false,
     item: null,
     newReleases: {},
@@ -34,6 +35,9 @@ const reducer = (state, action) => {
 
         case 'SET_PLAYLIST_ID':
             return { ...state, playlistId: action.playlistId };
+
+        case 'SET_DETAILED_ID':
+            return { ...state, detailedId: action.detailedId };
 
         case 'SET_NEW_RELEASES':
             return { ...state, newReleases: action.newReleases };

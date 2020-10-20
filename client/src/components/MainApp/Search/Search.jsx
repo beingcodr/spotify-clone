@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import SpotifyWebApi from 'spotify-web-api-js';
 import { useDataLayerValue } from '../../../DataLayer';
 import { spotifyInstance } from '../../../config/spotify';
 
@@ -31,11 +30,8 @@ const Search = () => {
                         <CollectionContainer title='Songs'>
                             {searchResults.tracks.items.map((item) => (
                                 <CollectionItem
-                                    name={
-                                        item.name.length >= 20
-                                            ? `${item.name.substring(0, 20)} ....`
-                                            : `${item.name}`
-                                    }
+                                    name={item.name}
+                                    link={`/track/${item.id}`}
                                     image={item?.album?.images[0]?.url}
                                     artist={item.album.artists
                                         .map((artist) => artist.name)
@@ -49,11 +45,8 @@ const Search = () => {
                         <CollectionContainer title='Artists'>
                             {searchResults.artists.items.map((item) => (
                                 <CollectionItem
-                                    name={
-                                        item.name.length >= 20
-                                            ? `${item.name.substring(0, 20)} ....`
-                                            : `${item.name}`
-                                    }
+                                    name={item.name}
+                                    link={`/artist/${item.id}`}
                                     image={item?.images[0]?.url}
                                     type={item.type}
                                     enableType
@@ -66,11 +59,8 @@ const Search = () => {
                         <CollectionContainer title='Albums'>
                             {searchResults.albums.items.map((item) => (
                                 <CollectionItem
-                                    name={
-                                        item.name.length >= 20
-                                            ? `${item.name.substring(0, 20)} ....`
-                                            : `${item.name}`
-                                    }
+                                    name={item.name}
+                                    link={`/album/${item.id}`}
                                     image={item?.images[0]?.url}
                                     artist={item.artists.map((artist) => artist.name).join(', ')}
                                 />
@@ -82,11 +72,8 @@ const Search = () => {
                         <CollectionContainer title='Playlists'>
                             {searchResults.playlists.items.map((item) => (
                                 <CollectionItem
-                                    name={
-                                        item.name.length >= 20
-                                            ? `${item.name.substring(0, 20)} ....`
-                                            : `${item.name}`
-                                    }
+                                    name={item.name}
+                                    link={`/playlist/${item.id}`}
                                     image={item?.images[0]?.url}
                                     artist={item.owner.display_name}
                                 />
@@ -97,14 +84,7 @@ const Search = () => {
                     {searchResults.shows?.items?.length > 0 && (
                         <CollectionContainer title='Podcasts'>
                             {searchResults.shows.items.map((item) => (
-                                <CollectionItem
-                                    name={
-                                        item.name.length >= 20
-                                            ? `${item.name.substring(0, 20)} ....`
-                                            : `${item.name}`
-                                    }
-                                    image={item?.images[0]?.url}
-                                />
+                                <CollectionItem name={item.name} image={item?.images[0]?.url} />
                             ))}
                         </CollectionContainer>
                     )}
@@ -112,14 +92,7 @@ const Search = () => {
                     {searchResults.episodes?.items?.length > 0 && (
                         <CollectionContainer title='Episodes'>
                             {searchResults.episodes.items.map((item) => (
-                                <CollectionItem
-                                    name={
-                                        item.name.length >= 20
-                                            ? `${item.name.substring(0, 20)} ....`
-                                            : `${item.name}`
-                                    }
-                                    image={item?.images[0]?.url}
-                                />
+                                <CollectionItem name={item.name} image={item?.images[0]?.url} />
                             ))}
                         </CollectionContainer>
                     )}

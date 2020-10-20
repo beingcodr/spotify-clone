@@ -6,7 +6,7 @@ import StyledBody from './StyledBody';
 
 // React components
 import Header from './Header/Header';
-import Playlist from './Playlist/Playlist';
+import DetailedComp from './DetailedComp/DetailedComp';
 import Home from './Home/Home';
 import Search from '../Search/Search';
 import Library from '../Library/Library';
@@ -26,13 +26,14 @@ const Body = ({ match }) => {
             {mainAppState === undefined ? (
                 <Home />
             ) : mainAppState === 'playlist' ||
+              mainAppState === 'track' ||
               mainAppState === 'album' ||
               mainAppState === 'show' ||
               mainAppState === 'artist' ? (
                 <Route
                     exact
-                    path={`/${'playlist' || 'album' || 'show' || 'artist'}/:id`}
-                    render={(props) => <Playlist {...props} mainAppState={mainAppState} />}
+                    path={`/${mainAppState}/:id`}
+                    render={(props) => <DetailedComp {...props} mainAppState={mainAppState} />}
                 />
             ) : mainAppState === 'search' ? (
                 <Search />

@@ -17,12 +17,12 @@ import useWindowSize from '../../../utils/useWindowSize';
 const Sidebar = () => {
     const [{ playlists }, dispatch] = useDataLayerValue();
     const windowSize = useWindowSize();
-    const mobileBreakpoint = windowSize && windowSize.width <= 1024;
+    const windowSizeCalc = windowSize.width >= 1024;
 
     return (
         <>
             <StyledSidebar>
-                {!mobileBreakpoint && <img src={spotifyLogo} alt='spotify logo' />}
+                {windowSizeCalc && <img src={spotifyLogo} alt='spotify logo' />}
                 <SidebarItems>
                     <SidebarOptions link='/' name='home' Icon={HomeIcon} />
                     <SidebarOptions link='/search' name='search' Icon={SearchIcon} />
@@ -33,7 +33,7 @@ const Sidebar = () => {
                         onClick={() => dispatch({ type: 'SET_LIBRARYSTATE', state: 'playlists' })}
                     />
                 </SidebarItems>
-                {!mobileBreakpoint && (
+                {windowSizeCalc && (
                     <SidebarItems title='playlists'>
                         {playlists?.items?.length > 0 ? (
                             playlists?.items.map((playlist) => {
@@ -45,8 +45,8 @@ const Sidebar = () => {
                                         name={playlist.name}
                                         onClick={() =>
                                             dispatch({
-                                                type: 'SET_PLAYLIST_ID',
-                                                playlistId: playlist.id,
+                                                type: 'SET_DETAILED_ID',
+                                                detailedId: playlist.id,
                                             })
                                         }
                                     />
