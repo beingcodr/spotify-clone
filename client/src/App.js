@@ -42,7 +42,7 @@ const App = () => {
             spotifyInstance.getUserPlaylists().then((playlists) => {
                 dispatch({ type: 'SET_PLAYLISTS', playlists: playlists });
                 playlistId === null &&
-                    dispatch({ type: 'SET_PLAYLIST_ID', playlistId: playlists?.items[0]?.id });
+                    dispatch({ type: 'SET_DETAILED_ID', detailedId: playlists?.items[0]?.id });
             });
         }
     }, []);

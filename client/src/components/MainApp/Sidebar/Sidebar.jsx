@@ -45,8 +45,8 @@ const Sidebar = () => {
                                         name={playlist.name}
                                         onClick={() =>
                                             dispatch({
-                                                type: 'SET_PLAYLIST_ID',
-                                                playlistId: playlist.id,
+                                                type: 'SET_DETAILED_ID',
+                                                detailedId: playlist.id,
                                             })
                                         }
                                     />

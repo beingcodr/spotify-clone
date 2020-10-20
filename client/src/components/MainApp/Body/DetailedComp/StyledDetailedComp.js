@@ -6,7 +6,7 @@ export default styled.div`
         padding: 2rem 2rem 10rem 2rem;
     }
 
-    .playlist__info {
+    .detailed__info {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -17,7 +17,7 @@ export default styled.div`
         }
 
         img {
-            width: 50vw;
+            width: 60vw;
             height: auto;
             margin: 0 auto;
             object-fit: contain;
@@ -52,7 +52,7 @@ export default styled.div`
         }
     }
 
-    .playlist__songs {
+    .detailed__songs {
         &__icons {
             display: flex;
             align-items: center;
@@ -62,7 +62,7 @@ export default styled.div`
                 margin-right: 1rem;
             }
 
-            .playlist__shuffle {
+            .detailed__shuffle {
                 font-size: 4rem;
             }
         }

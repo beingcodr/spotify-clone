@@ -6,6 +6,7 @@ export const initialState = {
     saved_albums: {},
     followed_artists: {},
     playlistId: null,
+    detailedId: null,
     playing: false,
     item: null,
     newReleases: {},
@@ -14,7 +15,7 @@ export const initialState = {
     searchResults: {},
     // ! Remove the token after development
     token:
-        'BQBpE-fy4XPnt3SURndnK2k_7Am66ms6-zeXIMjyW5-z4rsLzuMmGXnpviNJ1Myi9sdAFP6-39CJmJvPNKHH_b_gcYlucqPmin2qSTne158PwqPVNKvRcdV-YZGFSJss9R9t5c0Yu8ytzlHWP3-imjY1MNw2Go-Ie3wtddmqqCdytymR8BjVflAHu4iL4A',
+        'BQAjUarGeUU4OrBr_Efj4Bl4fDb5IRmh8IwJ2wJvTHo4BQ4AtewPqHGpCXaSD8KgbGWCxitVtDivBKMliNa2GwUk5dHFaHXC5XXlOLAuJzuHauw84F7NQGqw7e4Eje_y_JkCAvXknCumz39i1_LmmP1e0cvsAZIDJw_5Lmgb7Uuc8hOc_ZpJUn0RTG83nA',
 };
 
 const reducer = (state, action) => {
@@ -35,6 +36,9 @@ const reducer = (state, action) => {
 
         case 'SET_PLAYLIST_ID':
             return { ...state, playlistId: action.playlistId };
+
+        case 'SET_DETAILED_ID':
+            return { ...state, detailedId: action.detailedId };
 
         case 'SET_NEW_RELEASES':
             return { ...state, newReleases: action.newReleases };

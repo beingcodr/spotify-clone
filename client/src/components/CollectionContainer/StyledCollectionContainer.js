@@ -20,10 +20,14 @@ export default styled.div`
         position: relative;
         height: max-content;
         display: flex;
-        flex-wrap: ${(props) => (props.flexwrap ? 'wrap' : 'nowrap')};
+        flex-wrap: ${(props) => (props.mutable ? 'wrap' : 'nowrap')};
+        flex-direction: ${(props) => (props.mutable ? 'column' : 'row')};
         justify-content: flex-start;
         overflow-x: auto;
         overflow-y: hidden;
+        @media ${(props) => props.theme.breakpoints.lg_tablet} {
+            flex-direction: row;
+        }
 
         &::-webkit-scrollbar {
             width: 0;

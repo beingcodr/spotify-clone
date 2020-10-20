@@ -49,7 +49,6 @@ const Home = () => {
                 <CollectionContainer title='Recently played'>
                     {recentlyPlayedTracks.items.map((item) => (
                         <CollectionItem
-                            mutable
                             name={
                                 item.track.album.name.length >= 20
                                     ? `${item.track.album.name.substring(0, 20)} ....`

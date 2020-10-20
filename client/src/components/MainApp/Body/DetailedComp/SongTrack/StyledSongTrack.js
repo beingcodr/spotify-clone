@@ -30,7 +30,7 @@ export default styled.div`
         }
     }
 
-    .playlistSong__info {
+    .detailedSong__info {
         margin-left: 1rem;
 
         h1 {

@@ -10,6 +10,7 @@ export default styled.div`
     background-color: rgb(${(props) => props.theme.mediumBackground});
     justify-content: space-between;
     z-index: 100;
+    overflow: hidden;
     @media ${(props) => props.theme.breakpoints.lg_tablet} {
         padding: 1rem 2rem;
     }
